@@ -13,3 +13,12 @@ This is based on the packtpub video
 
 
 https://www.packtpub.com/packtlib/video/video/9781783284153
+
+
+----------
+LOCAL addresses:
+
+Marvel plugin
+http://localhost:9200/_plugin/marvel/sense/index.html
+
+See postman files for demonstration calls
