@@ -4,7 +4,8 @@
 	"description": "",
 	"order": [
 		"692c4fdb-4f09-81d6-63b2-a634bdc5965f",
-		"8cebd9b8-03d4-d8fe-b231-32c07f867d8a"
+		"8cebd9b8-03d4-d8fe-b231-32c07f867d8a",
+		"a7e35f73-a39a-826e-4c46-0df658b03f77"
 	],
 	"folders": [],
 	"timestamp": 1443037414039,
@@ -47,6 +48,26 @@
 			"helperAttributes": {},
 			"time": 1443038904708,
 			"name": "multi match",
+			"description": " ",
+			"collectionId": "687fbf18-c90f-b304-3b08-beb01fdd536c",
+			"responses": [],
+			"rawModeData": "{\n   \"fields\": [\"title\",\"topics\"],\n  \"query\":{\n   \n    \"multi_match\":\n    {\n      \"fields\": [\"title\",\"topics\"],\n      \"query\":\"BPEL OR WEB\"\n    }\n    \n    \n  }\n  \n  \n  \n}\n"
+		},
+		{
+			"id": "a7e35f73-a39a-826e-4c46-0df658b03f77",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://localhost:9200/library/books/_search",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1443038904708,
+			"name": "range query",
 			"description": " ",
 			"collectionId": "687fbf18-c90f-b304-3b08-beb01fdd536c",
 			"responses": [],
