@@ -169,7 +169,10 @@ searchApp.controller('SearchResultsList', ['$scope', 'searchService', 'filterSer
 
 searchApp.service('searchService', ['$q', 'esFactory', 'filterService', function($q, esFactory, filterService) {
   var esClient = esFactory({
-    location: 'localhost:9200'
+    
+    host: 'http://paas:6077017fa084e699b31a3fd673f6070f@fili-us-east-1.searchly.com'
+    //host: localhost:9200
+    
   });
 
   this.setQuery = function(searchTerms, selectedFilters) {

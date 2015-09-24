@@ -22,3 +22,8 @@ Marvel plugin
 http://localhost:9200/_plugin/marvel/sense/index.html
 
 See postman files for demonstration calls
+
+info on searchbox/elasticsearch on heroku:
+https://devcenter.heroku.com/articles/searchbox
+indices are created thru the addon in the heroku dashboard they cannot
+be created via CURL
