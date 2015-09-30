@@ -1,0 +1,23 @@
+{
+  "name": "elasticsearch-sandox",
+  "version": "0.0.0",
+  "homepage": "https://github.com/donhenton/elasticsearch-sandbox",
+  "authors": [
+    "d <dhenton@localhost.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "elasticsearch": "~8.1.0",
+    "angular-sanitize": "~1.4.5",
+    "json3": "~3.3.2",
+    "jquery": "~2.1.4"
+  }
+}
