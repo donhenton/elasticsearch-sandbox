@@ -1,5 +1,6 @@
 The files folder contains
 zipped elastic search instance
+this should be a folder called elasticsearch-1.7.2
 launch: enter bin file then ./elasticsearch
 had to override JAVA_HOME in elasticsearch.in.sh that is called by above
 
