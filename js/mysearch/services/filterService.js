@@ -4,7 +4,7 @@
 
  angular.module('mySearchApp').service('filterService', [function () {
             this.filters = {
-                availableFilters: {},
+                availableFilters: { },
                 selectedFilters: []
             };
 

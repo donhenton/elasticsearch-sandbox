@@ -21,23 +21,33 @@
                 };
                 $scope.showAutocomplete = false;
 
+                /**
+                 * keyup event for the type in box does the incremental
+                 * call for prepping the suggestion box
+                 * @param {type} event
+                 * @returns {undefined}
+                 */
                 $scope.evaluateTerms = function (event) {
+                    //$scope.searchTerms is the type in box contents
                     var inputTerms = $scope.searchTerms ? $scope.searchTerms.toLowerCase() : null;
-
+                     
+                    // if enter do a submit via ng-submit which points to $scope.submit
                     if (event.keyCode === 13) {
                         return;
                     }
-
+                    //get the suggestions if you have typed 4 characters        
                     if (inputTerms && inputTerms.length > 3) {
                         getSuggestions(inputTerms);
                     }
                     else if (!inputTerms) {
+                        //empty the autocomplete information
                         $scope.autocomplete = {};
                         $scope.showAutocomplete = false;
                     }
                 };
 
                 $scope.searchForSuggestion = function () {
+                    $log.debug("hit search for suggestion")
                     $scope.searchTerms = $scope.autocomplete.suggestions[0].options[0].text;
                     $scope.search();
                     $scope.showAutocomplete = false;
@@ -46,10 +56,11 @@
                 var getSuggestions = function (query) {
                     searchService.getSuggestions(query).then(function (es_return) {
                         var suggestions = es_return.suggest.phraseSuggestion;
+                        
                         var results = es_return.hits.hits;
 
                         if (suggestions.length > 0) {
-                            $scope.autocomplete.suggestions = suggestions;
+                            $scope.autocomplete.suggestions =  suggestions  ;
                         }
                         else {
                             $scope.autocomplete.suggestions = [];
@@ -57,6 +68,7 @@
 
                         if (results.length > 0) {
                             $scope.autocomplete.results = results;
+                             $log.debug("suggestions "+JSON.stringify(results))
                         }
                         else {
                             $scope.autocomplete.results = [];
