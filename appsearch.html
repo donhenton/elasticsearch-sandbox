@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 20px">
+
+
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="bower_components/angular/angular-csp.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+
+
+        <!-- spring mvc insert -->
+
+
+        <style>
+
+            .suggestions {
+                position: absolute;
+
+                margin: 0;
+                padding: 0 10px;
+                background: #fff;
+                border: 1px solid #eee;
+            }
+            .suggestions li {
+                padding: .5em 1em;
+                margin: 0;
+                border-bottom: 1px solid #eee;
+            }
+            .suggestions small {
+                color: #ccc;
+            }
+
+
+
+        </style>
+
+        <div ng-app="mySearchApp" class="container" ng-controller="SearchResultsList">
+            <div ng-cloak>
+                <div class="row">
+                    <div class="offset1 span5">
+                        <form ng-submit="search()" class="form-inline" role="form">
+                            <input type="text" class="input-xlarge" ng-model="searchTerms" placeholder="Search for books" class="form-control" ng-keyup="evaluateTerms($event)" ng-blur="showAutocomplete = false">
+                            <input type="submit" value="Search" class="btn btn-primary">
+                        </form>
+                    </div>
+                    <div class="span6">
+
+                        <ul class="suggestions" ng-show="showAutocomplete">
+                            <li ng-repeat="suggestion in autocomplete.suggestions" ng-show="suggestion.options.length > 0">
+                                <a href="#" ng-mousedown="searchForSuggestion()"><small>Search for &mdash;</small> {{suggestion.options[0].text}}</a>
+                            </li>
+                            <li ng-repeat="result in autocomplete.results">
+                                <a href="#" ng-mousedown="searchForSingleTitle(result._source.title)">{{result._source.title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <section class="results">
+                    <h1 class="search-title">
+                        Results for <strong>{{results.searchTerms}}</strong> ({{results.documentCount}})
+                    </h1>
+
+                    <p ng-if="noResults" class="no-results">No results were found for your search.</p>
+
+                    <ul>
+                        <li ng-repeat="book in results.documents">
+                            <a href="https://www.packtpub.com/all/?search={{book.title}}"><strong><span ng-bind-html="book.title"></span> &mdash; {{book.price_gbp}}</strong></a>
+                            <p ng-bind-html="book['detailed description']"></p>
+                        </li>
+                    </ul>
+
+                    <button ng-click="getNextPage()" ng-if="canGetNextPage" class="btn btn-primary">Load More Results</button>
+
+                    <div class="throbber" ng-if="isSearching">
+                        SEARCHING &hellip;
+                    </div>
+                </section>
+
+                <section class="filters" ng-if="results.searchTerms">
+                    <strong>Sort by</strong><br>
+                    <select ng-model="$parent.selectedSort" ng-options="sort.displayName for sort in sortOptions" ng-change="updateSort()"></select>
+
+
+                </section>
+            </div>
+
+
+            <!-- spring mvc insert -->           
+
+
+            <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+            <script src="bower_components/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
+            <script src="bower_components/elasticsearch/elasticsearch.angular.js" type="text/javascript"></script>
+            <script src="js/mysearch/app.js" type="text/javascript"></script>
+            <script src="js/mysearch/services/filterService.js" type="text/javascript"></script>
+            <script src="js/mysearch/services/searchService.js" type="text/javascript"></script>
+            <script src="js/mysearch/controllers/SearchResultsListController.js" type="text/javascript"></script>
+
+        </div>
+
+    </body>
+</html>

@@ -47,11 +47,19 @@
                 };
 
                 $scope.searchForSuggestion = function () {
-                    $log.debug("hit search for suggestion")
+                    
                     $scope.searchTerms = $scope.autocomplete.suggestions[0].options[0].text;
                     $scope.search();
                     $scope.showAutocomplete = false;
                 };
+                
+                $scope.searchForSingleTitle = function(suggestion) 
+                {
+                    $scope.searchTerms = suggestion;
+                    $scope.search();
+                    $scope.showAutocomplete = false;
+                }
+                
 
                 var getSuggestions = function (query) {
                     searchService.getSuggestions(query).then(function (es_return) {
@@ -68,7 +76,7 @@
 
                         if (results.length > 0) {
                             $scope.autocomplete.results = results;
-                             $log.debug("suggestions "+JSON.stringify(results))
+                            // $log.debug("suggestions "+JSON.stringify(results))
                         }
                         else {
                             $scope.autocomplete.results = [];
